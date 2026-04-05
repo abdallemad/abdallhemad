@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --font-poppins: var(--font-poppins);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -42,9 +43,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-poppins: var(--font-poppins);
+  --font-heading: var(--font-poppins);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -81,19 +81,6 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .dark {
@@ -140,4 +127,26 @@ body {
   html {
     @apply font-sans;
   }
+
+  /* TEXT */
+  .hero-heading{
+    @apply text-5xl font-extrabold lg:text-7xl font-heading
+  }
+  .heading-1{
+    @apply text-3xl font-bold lg:text-5xl font-heading
+  }
+  .heading-2{
+    @apply text-2xl font-bold lg:text-4xl font-heading
+  }
+  .heading-3{
+    @apply text-xl font-semibold lg:text-3xl font-heading
+  }
+  .heading-4{
+    @apply text-lg font-semibold lg:text-2xl font-heading
+  }
+  .card-title{
+    @apply text-xl font-semibold lg:text-2xl font-heading
+  }
+  /* ====== */
+  
 }
