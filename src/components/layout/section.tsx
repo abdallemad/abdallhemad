@@ -1,9 +1,9 @@
 
 
-type SectionProps = {
+
+type SectionProps = React.ComponentProps<"section"> & {
   children: React.ReactNode;
-  className?: string;
-}
+};
 
 // DESKTOP
 // Title ↕ Description = 24
@@ -14,11 +14,14 @@ type SectionProps = {
 // Description ↕ Button = 24
 
 
-export default function Section({ children, className }: SectionProps) {
 
+export default function Section({ children, className, ...props }: SectionProps) {
   return (
-    <div className={`py-[48px] lg:py-[80px]  ${className}`}>
+    <section
+      className={`py-[48px] lg:py-[80px] ${className ?? ""}`}
+      {...props}
+    >
       {children}
-    </div>
-  )
+    </section>
+  );
 }
