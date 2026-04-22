@@ -7,7 +7,7 @@ import { RefObject, useEffect, useRef, useState } from 'react'
 export default function AboutCurve({ containerRef }: { containerRef: RefObject<HTMLDivElement | null> }) {
 
   const scroll = useScroll({ target: containerRef, offset: ["start end", "start 30%"] })
-  const Qtranslation = useTransform(scroll.scrollYProgress, [0, 1], [200, 0])
+  const Qtranslation = useTransform(scroll.scrollYProgress, [0, 1], [350, 0])
   const [width, setWidth] = useState(window.innerWidth)
   useEffect(() => {
     const handleResize = () => {
@@ -19,14 +19,16 @@ export default function AboutCurve({ containerRef }: { containerRef: RefObject<H
     }
   }, [])
   const path = useMotionTemplate`
-   M0 200
-   L${width} 200
-   Q${width / 2} ${Qtranslation} 0 200
+   M0 350
+   L${width} 350
+   Q${width / 2} ${Qtranslation} 0 350
   `
   return (
-    <svg className="absolute inset-x-0 top-0 stroke-none h-[200px] fill-primary z-30 w-full -translate-y-[200px]">
-      <motion.path d={path}></motion.path>
-    </svg>
+    <div>
+      <svg className="absolute inset-x-0 top-0 stroke-none h-[350px] fill-background z-30 w-full -translate-y-[350px]">
+        <motion.path d={path}></motion.path>
+      </svg>
+    </div>
   )
 }
 
@@ -52,9 +54,9 @@ export function FooterCurve({ containerRef }: { containerRef: RefObject<HTMLDivE
     Q${width / 2} ${Qtranslation} 0 0
   `
   return (
-    <div className=' absolute inset-x-0 top-0 w-full z-50 flex flex-col pointer-events-none'>
-      <motion.div style={{ height }} className='w-full h-[300px] bg-primary' />
-      <svg className="stroke-none h-[300px] fill-primary w-full">
+    <div className=' absolute inset-x-0 -top-1 w-full z-50 flex flex-col pointer-events-none light'>
+      <motion.div style={{ height }} className='w-full h-[300px] bg-background' />
+      <svg className="stroke-none h-[300px] fill-background w-full">
         <motion.path d={path}></motion.path>
       </svg>
     </div>

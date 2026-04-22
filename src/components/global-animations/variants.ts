@@ -21,7 +21,7 @@ export const CONATINER_SLIDE_UP_HEADING: Variants = {
   initial: {},
   open: {
     transition: {
-      staggerChildren: 0.02, // 👈 delay بين كل كلمة
+      staggerChildren: 0.01, // 👈 delay بين كل كلمة
     },
   },
   close: {
@@ -29,5 +29,17 @@ export const CONATINER_SLIDE_UP_HEADING: Variants = {
       staggerChildren: 0.02,
       staggerDirection: -1, // 👈 reverse في الخروج
     },
+  },
+};
+
+export const SCALE_UP_ANIMATION: Variants = {
+  initial: { scale: 0 },
+  enter: {
+    scale: 1,
+    transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] },
+  },
+  closed: {
+    scale: 0,
+    transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] },
   },
 };

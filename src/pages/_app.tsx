@@ -12,6 +12,7 @@ const poppins = Poppins({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={`${poppins.variable} antialiased`}>
+      
       <Component {...pageProps} />
     </main>
   );

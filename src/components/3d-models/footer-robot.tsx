@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function RobotScene() {
 
   return (
-    <div className="absolute inset-0 z-20" data-scroll data-scroll-speed="0.3">
+    <div className="absolute inset-0" data-scroll data-scroll-speed="0.3">
 
       <Canvas shadows camera={{ position: [0, 0, 7], fov: 50 }}>
         <Lights />
@@ -40,7 +40,7 @@ function Mesh() {
       rotation: [0, 0, 0]
     }
   }))
-  const color = '#fafafa'
+  const color = '#d4f534'
   const metalness = 1
   const roughness = 0.3
   const mouseHandler = (e: MouseEvent) => {

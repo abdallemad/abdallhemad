@@ -21,9 +21,9 @@ export default function ProcessStage({ title, description, step, direction }: Pr
           initial="initial"
           animate={inView ? "open" : "close"}
           className={`heading-4 uppercase text-muted-foreground flex ${direction === "left" ? "justify-start" : "justify-end"} overflow-hidden`}>
-          {`step ${step}`.split("").map((word, i) => (
+          {`step_${step}`.split("").map((word, i) => (
             <span key={i} className="overflow-hidden block">
-              <motion.span transition={{ duration: 0.5 }} variants={SLIDE_UP} className="block ">
+              <motion.span transition={{ duration: 0.5 }} variants={SLIDE_UP} className="block">
                 {word}
               </motion.span>
             </span>
@@ -36,7 +36,7 @@ export default function ProcessStage({ title, description, step, direction }: Pr
           className={`heading-1 flex ${direction === "left" ? "justify-start" : "justify-end"} overflow-hidden`}>
           {title.split("").map((word, i) => (
             <span key={i} className="overflow-hidden block">
-              <motion.span transition={{ duration: 0.5 }} variants={SLIDE_UP} className="block ">
+              <motion.span transition={{ duration: 0.5 }} variants={SLIDE_UP} className="block leading-[127%]">
                 {word}
               </motion.span>
             </span>

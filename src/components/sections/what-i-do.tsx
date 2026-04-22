@@ -5,6 +5,7 @@ import SectionHeader from "../layout/section-header";
 import WhatIDoCard from "../ui/cards/what-i-do-card";
 import { useScroll, useTransform, motion } from "motion/react";
 import { RefObject, useRef } from "react";
+import { WHAT_I_DO } from "@/lib/data";
 
 
 
@@ -33,44 +34,26 @@ function LargeWhatIDoCards({ ref }: { ref: RefObject<HTMLDivElement | null> }) {
   const translateX = useTransform(scroll.scrollYProgress, [0, 1], ["0%", "-120%"])
   return (
     <motion.div style={{ translateX }} className="lg:flex grid md:grid-cols-2 lg:flex-row items-center gap-4 lg:gap-2 sticky top-[20dvh]">
-      <WhatIDoCard
-        title="Web Design & Development"
-        description="I build modern, high-performance web applications with a focus on clean architecture and thoughtful UI/UX."
-      />
-      <WhatIDoCard
-        title="Web Design & Development"
-        description="I build modern, high-performance web applications with a focus on clean architecture and thoughtful UI/UX."
-      />
-      <WhatIDoCard
-        title="Web Design & Development"
-        description="I build modern, high-performance web applications with a focus on clean architecture and thoughtful UI/UX."
-      />
-      <WhatIDoCard
-        title="Web Design & Development"
-        description="I build modern, high-performance web applications with a focus on clean architecture and thoughtful UI/UX."
-      />
+      {WHAT_I_DO.map((item, index) => (
+        <WhatIDoCard
+          key={index}
+          title={item.name}
+          description={item.description}
+        />
+      ))}
     </motion.div>
   )
 }
 function SmallWhatIDoCards() {
   return (
     <div className="lg:flex grid md:grid-cols-2 lg:flex-row items-center gap-4 lg:gap-2 sticky top-[20dvh]">
-      <WhatIDoCard
-        title="Web Design & Development"
-        description="I build modern, high-performance web applications with a focus on clean architecture and thoughtful UI/UX."
-      />
-      <WhatIDoCard
-        title="Web Design & Development"
-        description="I build modern, high-performance web applications with a focus on clean architecture and thoughtful UI/UX."
-      />
-      <WhatIDoCard
-        title="Web Design & Development"
-        description="I build modern, high-performance web applications with a focus on clean architecture and thoughtful UI/UX."
-      />
-      <WhatIDoCard
-        title="Web Design & Development"
-        description="I build modern, high-performance web applications with a focus on clean architecture and thoughtful UI/UX."
-      />
+      {WHAT_I_DO.map((item, index) => (
+        <WhatIDoCard
+          key={index}
+          title={item.name}
+          description={item.description}
+        />
+      ))}
     </div>
   )
 }

@@ -14,7 +14,7 @@ const DynamicLottie = dynamic(() => import("lottie-react"), { ssr: false });
 export default function Hero() {
   return (
     <Section className="flex-1 px-4 ">
-      <div className="flex flex-col items-center gap-6 lg:absolute top-1/2 left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 w-full z-10">
+      <div className="flex flex-col items-center gap-6 lg:absolute top-1/2 left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 w-full z-10" data-scroll data-scroll-speed="0.2">
         <div className="flex flex-col items-center gap-2">
           <h4 className="heading-4 text-muted-foreground">Hi👋, My name is</h4>
           <h1 className="hero-heading text-center min-w-fit">
@@ -63,7 +63,7 @@ function SocialLinks() {
         </Magnetic>
       </ul>
       <div className="absolute hidden sm:flex py-2 border-2 border-primary right-0 bottom-8 rounded-l-full gap-4 pr-10 pl-2 items-center translate-x-2" data-scroll data-scroll-speed={scrollSpeed}>
-        <div className="size-20 rounded-full bg-foreground">
+        <div className="size-20 rounded-full bg-primary">
           <DynamicLottie
             animationData={earthAnimation}
             loop

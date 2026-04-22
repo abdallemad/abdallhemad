@@ -19,10 +19,10 @@ export default function SectionHeader({ title, subTitle, className, direction = 
         variants={CONATINER_SLIDE_UP_HEADING}
         initial="initial"
         animate={inView ? "open" : "close"}
-        className={`heading-2 flex flex-wrap gap-2 ${direction} overflow-hidden`}>
+        className={`heading-2 flex flex-wrap gap-x-1.5 ${direction} overflow-hidden`}>
         {title.split(" ").map((word, i) => (
           <span key={i} className="overflow-hidden block">
-            <motion.span transition={{ duration: 0.5 }} variants={SLIDE_UP} className="block">
+            <motion.span transition={{ duration: 0.5 }} variants={SLIDE_UP} className="block leading-[125%]">
               {word}
             </motion.span>
           </span>
@@ -32,7 +32,7 @@ export default function SectionHeader({ title, subTitle, className, direction = 
         variants={CONATINER_SLIDE_UP_HEADING}
         initial="initial"
         animate={inView ? "open" : "close"}
-        className={`text-muted-foreground flex flex-wrap gap-2 ${direction} overflow-hidden`}>
+        className={`text-muted-foreground flex flex-wrap gap-x-1 ${direction} overflow-hidden flex-wrap`}>
         {subTitle?.split(" ").map((word, i) => (
           <span key={i} className="overflow-hidden block">
             <motion.span transition={{ duration: 0.5 }} variants={SLIDE_UP} className="block">

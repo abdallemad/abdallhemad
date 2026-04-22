@@ -1,11 +1,11 @@
 import { useDeviceType } from "@/hooks/use-device-type";
 import { PROJECTS } from "@/lib/data";
-import Container from "../layout/container";
-import Section from "../layout/section";
-import SectionHeader from "../layout/section-header";
-import Gallery from "../project-gallery/gallery";
-import SmallGallery from "../project-gallery/small-gallery";
-import { Button } from "../ui/button";
+import Container from "@/components/layout/container";
+import Section from "@/components/layout/section";
+import SectionHeader from "@/components/layout/section-header";
+import Gallery from "@/components/project-gallery/gallery";
+import SmallGallery from "@/components/project-gallery/small-gallery";
+import { Button } from "@/components/ui/button";
 
 
 

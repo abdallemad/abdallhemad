@@ -21,7 +21,7 @@ export default function ProjectCard({ title, image, description, label, link }: 
   return (
     <Card className="border-accent border pt-0">
       <figure className="relative min-h-48">
-        <Image src={image} alt={title} fill className="w-full h-full object-cover" />
+        <Image src={`/images/${image}`} alt={title} fill className="w-full h-full object-cover" />
       </figure>
       <CardContent className="p-2">
         <p className="uppercase text-muted-foreground mb-3">{label}</p>
@@ -33,7 +33,7 @@ export default function ProjectCard({ title, image, description, label, link }: 
         <div className="h-px bg-muted-foreground my-4"></div>
 
         <div className="flex justify-between items-center pr-4">
-          <Button variant={'ghost'} className="text-muted-foreground">
+          <Button  className="text-muted-foreground">
             View Project
           </Button>
           <ArrowRight className="w-4 h-4 -rotate-45" />
