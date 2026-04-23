@@ -24,8 +24,8 @@ function Lights() {
     <>
       <ambientLight intensity={1} />
       <directionalLight position={[-width, height, 4]} intensity={3} color={'#fff'} castShadow />
-      <directionalLight position={[-width/2, -height, 4]} intensity={3} color={'#fff'} castShadow />
-      <directionalLight position={[width/2, height, -2]} intensity={3} color={'#fff'} castShadow />
+      <directionalLight position={[-width / 2, -height, 4]} intensity={3} color={'#fff'} castShadow />
+      <directionalLight position={[width / 2, height, -2]} intensity={3} color={'#fff'} castShadow />
       <directionalLight position={[1, 1, -2]} intensity={3} color={'#fff'} castShadow />
 
     </>
@@ -34,7 +34,7 @@ function Lights() {
 
 
 function Mesh() {
-  const { nodes, materials } = useGLTF('/models/Untitled.glb')
+  const { nodes, materials } = useGLTF('/models/Untitled.glb') as any
   const [spring, api] = useSpring(() => ({
     from: {
       rotation: [0, 0, 0]
