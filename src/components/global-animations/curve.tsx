@@ -25,7 +25,7 @@ export default function AboutCurve({ containerRef }: { containerRef: RefObject<H
   `
   return (
     <div>
-      <svg className="absolute inset-x-0 top-0 stroke-none h-[350px] fill-background z-30 w-full -translate-y-[350px]">
+      <svg className="absolute inset-x-0 top-0 stroke-none h-[350px] fill-background w-full -translate-y-[350px]">
         <motion.path d={path}></motion.path>
       </svg>
     </div>

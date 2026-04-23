@@ -39,7 +39,7 @@ function SocialLinks() {
   const scrollSpeed = "0.2"
   return (
     <>
-      <ul className="absolute left-4 bottom-0 hidden flex-col  sm:flex z-50" data-scroll data-scroll-speed={scrollSpeed}>
+      <ul className="absolute left-4 bottom-0 hidden flex-col z-[19] sm:flex" data-scroll data-scroll-speed={scrollSpeed}>
         <Magnetic amount={4}>
           <li className="p-4">
             <a href="https://github.com/abdallaemad" target="_blank" rel="noopener noreferrer" aria-label="Github Profile">

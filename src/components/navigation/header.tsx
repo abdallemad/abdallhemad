@@ -2,6 +2,7 @@ import { useDeviceType } from "@/hooks/use-device-type";
 import { Button } from "../ui/button";
 import Menu from "./menu";
 import { LINKS } from "@/lib/data";
+import { MenuIcon } from "lucide-react";
 
 
 export default function Header() {
@@ -13,7 +14,9 @@ export default function Header() {
       <nav className="flex items-center justify-between py-2 lg:py-8">
         <div className="heading-5">Abdalla Emad.</div>
         {device === 'mobile' ? (
-          <Menu />
+          <Button className="rounded-2xl size-14 z-90">
+            <MenuIcon className="size-6" />
+          </Button>
         ) : (
           <div className="flex items-center gap-6 text-muted-foreground">
             <div className="flex items-center gap-6">
@@ -30,6 +33,7 @@ export default function Header() {
           </div>
         )}
       </nav>
+      <Menu isOpen={false} />
     </header>
   )
 }
