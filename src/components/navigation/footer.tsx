@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRef } from "react";
-import RobotScene from "../3d-models/footer-robot";
+import RobotScene from "../global-animations/3d-models/footer-robot";
 import { FooterCurve } from "../global-animations/curve";
 import { Button } from "../ui/button";
 import { useDeviceType } from "@/hooks/use-device-type";

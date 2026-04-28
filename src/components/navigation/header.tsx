@@ -1,10 +1,12 @@
 import { useDeviceType } from "@/hooks/use-device-type";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import Menu from "./menu";
 import { LINKS } from "@/lib/data";
 import { MenuIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion } from 'motion/react'
+import Link from "next/link";
+import Magnetic from "../global-animations/magnetic";
 
 export default function Header() {
 
@@ -18,7 +20,7 @@ export default function Header() {
   return (
     <header className="px-4 md:px-12 z-20">
       <nav className="flex items-center justify-between py-2 lg:py-8">
-        <div className="heading-5">Abdalla Emad.</div>
+        <Link href={'/'} className="heading-5">Abdalla Emad.</Link>
         {device === 'mobile' ? (
           <Button className="rounded-2xl size-14 z-90" onClick={handleMenuClick}>
             <MenuIcon className="size-6" />
@@ -29,9 +31,9 @@ export default function Header() {
               {LINKS.map(link => (
                 <>
                   {link.name === 'Contact' ? (
-                    <Button className="">{link.name}</Button>
+                    <Link href={link.href} className={buttonVariants()}>{link.name}</Link>
                   ) : (
-                    <p>{link.name}</p>
+                    <Link href={link.href}>{link.name}</Link>
                   )}
                 </>
               ))}
@@ -60,19 +62,21 @@ function MenuButton({ handleMenuClick }: { handleMenuClick: () => void }) {
     };
   }, []);
   return (
-    <motion.div
-      variants={{ scaleup: { scale: 1 }, scaleDown: { scale: 0 } }}
-      initial="scaleDown"
-      animate={showSidebarButton ? 'scaleup' : 'scaleDown'}
-      transition={{
-        duration: 0.3,
-        ease: [0.76, 0, 0.24, 1],
-      }}
-      className="z-90 fixed top-6 right-8"
-    >
-      <Button className="rounded-2xl size-14 " onClick={handleMenuClick}>
-        <MenuIcon className="size-6" />
-      </Button>
-    </motion.div>
+    <Magnetic amount={4}>
+      <motion.div
+        variants={{ scaleup: { scale: 1 }, scaleDown: { scale: 0 } }}
+        initial="scaleDown"
+        animate={showSidebarButton ? 'scaleup' : 'scaleDown'}
+        transition={{
+          duration: 0.3,
+          ease: [0.76, 0, 0.24, 1],
+        }}
+        className="z-90 fixed top-6 right-8"
+      >
+        <Button className="rounded-2xl size-14 " onClick={handleMenuClick}>
+          <MenuIcon className="size-6" />
+        </Button>
+      </motion.div>
+    </Magnetic>
   )
 }

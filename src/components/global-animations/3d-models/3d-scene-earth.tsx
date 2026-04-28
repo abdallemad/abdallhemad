@@ -1,11 +1,11 @@
 'use client'
 import { useDeviceType } from '@/hooks/use-device-type';
 import { a, useSpring } from '@react-spring/three';
-import { useTexture } from "@react-three/drei";
+import { Html, useProgress, useTexture } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import * as THREE from 'three';
 
 
@@ -15,12 +15,19 @@ export default function SmoothEearthScroll() {
       {/* <ambientLight intensity={0.51} /> */}
       <directionalLight position={[4, 0, 0]} intensity={5} />
       {/* <OrbitControls /> */}
-      <Eearth />
+      <Suspense fallback={<Loader />}>
+        <Eearth />
+      </Suspense>
     </Canvas>
   )
 }
-
+function Loader() {
+  const { active, progress, errors, item, loaded, total } = useProgress()
+  return <Html center>{progress} % loaded</Html>
+}
 function Eearth() {
+
+
   const texture = useTexture('/texture/earth-gray.png')
   const earthRef = useRef<THREE.Mesh>(null)
   const [spring, api] = useSpring(() => ({

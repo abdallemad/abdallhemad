@@ -12,6 +12,7 @@ import Image from "next/image";
 import { useMotionTemplate, useScroll, useTransform, motion, useInView } from "motion/react";
 import ScrollVelocity from "../ui/ScrollVelocity";
 import { SLIDE_UP, CONATINER_SLIDE_UP_HEADING } from "../global-animations/variants";
+import Magnetic from "../global-animations/magnetic";
 
 
 export default function About() {
@@ -19,6 +20,7 @@ export default function About() {
 
   const heading3Ref = useRef<HTMLHeadingElement>(null)
   const heading3InView = useInView(heading3Ref, { margin: "0px 0px -50% 0px", })
+  
   const heading5Ref = useRef<HTMLHeadingElement>(null)
   const heading5InView = useInView(heading5Ref, { margin: "0px 0px -48% 0px" })
 
@@ -29,7 +31,6 @@ export default function About() {
         <Container>
           <Section id="about" className="">
             <div className="flex flex-col items-center gap-8 lg:gap-12">
-              {/* <h2 className="heading-2">About Me</h2> */}
               <div className="flex flex-col items-center gap-6 lg:gap-8 text-center max-w-[980px]">
                 <motion.h3
                   ref={heading3Ref}
@@ -64,10 +65,11 @@ export default function About() {
                   ))}
                 </motion.h5>
               </div>
-              <Button size={'lg'} className="">
-                About Me
-              </Button>
-
+              <Magnetic >
+                <Button size={'lg'} className="">
+                  About Me
+                </Button>
+              </Magnetic>
             </div>
 
           </Section>
@@ -85,15 +87,19 @@ export default function About() {
 }
 
 function AboutImage() {
+
   const containerRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
+
   const scroll = useScroll({ target: containerRef, offset: ["start end", "start 10%"] })
   const scrollImage = useScroll({ target: imageRef, offset: ["start end", "start 10%"] })
+
   const clipTranslate = useTransform(scroll.scrollYProgress, [0, 1], [30, 0])
   const cipRounded = useTransform(scroll.scrollYProgress, [0, 1], [50, 0])
   const clipTranslateImage = useTransform(scrollImage.scrollYProgress, [0, 1], [30, 0])
   const imageHeight = useTransform(scrollImage.scrollYProgress, [0, 1], ["50vh", "100vh"])
   const imageScale = useTransform(scrollImage.scrollYProgress, [0, 1], [1.5, 1])
+
   const clipPath = useMotionTemplate`inset(${clipTranslate}% ${clipTranslate}% 0 ${clipTranslate}% round ${cipRounded}px)`
   const clipPathImage = useMotionTemplate`inset(0 ${clipTranslateImage}% 0 ${clipTranslateImage}%)`
 

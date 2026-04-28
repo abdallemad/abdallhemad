@@ -1,5 +1,5 @@
 import SEO from "@/components/seo/seo";
-import SmoothEearthScroll from "@/components/3d-models/3d-scene-earth";
+import SmoothEearthScroll from "@/components/global-animations/3d-models/3d-scene-earth";
 import SmoothScroll from "@/components/layout/smooth-scroll";
 import Footer from "@/components/navigation/footer";
 import Header from "@/components/navigation/header";

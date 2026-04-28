@@ -4,6 +4,7 @@ import { SOCIAL_LINKS, LINKS } from "@/lib/data";
 import { AnimatePresence, motion } from "motion/react";
 import { MENU_HEIGHT, TRANSLATE_UP_CHARS } from "@/components/global-animations/variants";
 import { JSX } from "react";
+import Link from "next/link";
 
 
 
@@ -39,12 +40,12 @@ export default function Menu({ isOpen }: { isOpen: boolean }) {
                 </div>
                 <ul className="py-6 lg:py-12 flex flex-col gap-2">
                   <div className="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                    <li className="hero-heading text-primary-foreground overflow-hidden">{getChars("HOME")}</li>
-                    <li className="hero-heading text-primary-foreground overflow-hidden">{getChars("ABOUT")}</li>
+                    <Link href={'/'} className="hero-heading text-primary-foreground overflow-hidden">{getChars("HOME")}</Link>
+                    <Link href={'/about'} className="hero-heading text-primary-foreground overflow-hidden">{getChars("ABOUT")}</Link>
                   </div>
                   <div className="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                    <li className="hero-heading text-primary-foreground overflow-hidden">{getChars("WORK")}</li>
-                    <li className="hero-heading text-primary-foreground overflow-hidden">{getChars("CONTACT")}</li>
+                    <Link href={'/work'} className="hero-heading text-primary-foreground overflow-hidden">{getChars("WORK")}</Link>
+                    <Link href={'/contact'} className="hero-heading text-primary-foreground overflow-hidden">{getChars("CONTACT")}</Link>
                   </div>
                 </ul>
               </div>

@@ -132,6 +132,6 @@ export const PROJECTS = [
     live: "https://saas-notification.vercel.app/",
     bgColor: "#3659b1",
   },
-];
+] as const;
 
 export const SKILLS = [{}];

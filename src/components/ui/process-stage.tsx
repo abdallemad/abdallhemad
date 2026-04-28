@@ -46,7 +46,7 @@ export default function ProcessStage({ title, description, step, direction }: Pr
           variants={CONATINER_SLIDE_UP_HEADING}
           initial="initial"
           animate={inView ? "open" : "close"}
-          className={`text-muted-foreground flex flex-wrap gap-2 ${direction === "left" ? "justify-start" : "justify-end"} overflow-hidden`}>
+          className={`text-muted-foreground flex flex-wrap gap-x-[2px] ${direction === "left" ? "justify-start" : "justify-end"} overflow-hidden`}>
           {description.split(" ").map((word, i) => (
             <span key={i} className="overflow-hidden block">
               <motion.span transition={{ duration: 0.5 }} variants={SLIDE_UP} className="block">
