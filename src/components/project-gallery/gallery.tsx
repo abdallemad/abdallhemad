@@ -4,7 +4,7 @@ import GalleryViewer from "./project-viewer";
 import { useMotionValue } from "motion/react";
 
 type GalleryProps = {
-  projects: { label: string, title: string, id: number }[]
+  projects: readonly { label: string; title: string; id: number; img: string; bgColor: string }[];
 }
 
 
@@ -29,7 +29,7 @@ export default function Gallery({ projects }: GalleryProps) {
         />
       ))}
 
-      <GalleryViewer modal={modal} />
+      <GalleryViewer modal={modal} projects={projects} />
     </ul>
   );
 }

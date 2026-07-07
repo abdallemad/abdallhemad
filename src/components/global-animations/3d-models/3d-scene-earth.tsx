@@ -1,13 +1,11 @@
-'use client'
-import { useDeviceType } from '@/hooks/use-device-type';
-import { a, useSpring } from '@react-spring/three';
+"use client";
+import { useDeviceType } from "@/hooks/use-device-type";
+import { a, useSpring } from "@react-spring/three";
 import { Html, useProgress, useTexture } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import gsap from "gsap";
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useRouter } from "next/router";
 import { Suspense, useEffect, useRef } from "react";
-import * as THREE from 'three';
-
+import * as THREE from "three";
 
 export default function SmoothEearthScroll() {
   return (
@@ -19,69 +17,83 @@ export default function SmoothEearthScroll() {
         <Eearth />
       </Suspense>
     </Canvas>
-  )
+  );
 }
 function Loader() {
-  const { active, progress, errors, item, loaded, total } = useProgress()
-  return <Html center>{progress} % loaded</Html>
+  const { active, progress, errors, item, loaded, total } = useProgress();
+  return <Html center>{progress} % loaded</Html>;
 }
 function Eearth() {
+  const router = useRouter();
 
-
-  const texture = useTexture('/texture/earth-gray.png')
-  const earthRef = useRef<THREE.Mesh>(null)
+  const texture = useTexture(
+    router.route === "/work"
+      ? "/texture/moon-texture.png"
+      : router.route === "/contact"
+        ? "/texture/autared-texture.png"
+        : "/texture/earth-gray.png",
+  );
+  const earthRef = useRef<THREE.Mesh>(null);
   const [spring, api] = useSpring(() => ({
-    from: { rotation: [0, 0, 0] }
-  }))
-  const scrollProgress = useRef(0);
-  const prevScrollProgress = useRef(0);
+    from: { rotation: [0, 0, 0] },
+  }));
+  const prevScrollY = useRef(0);
   const direction = useRef(1);
-  const deviceType = useDeviceType()
+  const deviceType = useDeviceType();
+
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-
-    ScrollTrigger.create({
-      trigger: ".earth-scroll-base",
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-      onUpdate: (self) => {
-        const currentProgress = self.progress;
-        direction.current = currentProgress > prevScrollProgress.current ? 1 : -1;
-        prevScrollProgress.current = currentProgress;
-        scrollProgress.current = self.progress
-      },
-    })
-
+    /**
+     * Normalize rotation by window.scrollY / window.innerHeight so the
+     * rotation amount is always the same per viewport-height scrolled,
+     * regardless of total page length or which page is rendered.
+     *
+     * One full viewport scroll  →  Math.PI * 2  (one full rotation)
+     */
     function handleScroll() {
+      const viewportHeight = window.innerHeight || 1;
+      // How many viewport-heights have been scrolled
+      const normalizedProgress = window.scrollY / viewportHeight;
+
+      direction.current = window.scrollY > prevScrollY.current ? 1 : -1;
+      prevScrollY.current = window.scrollY;
+
       api.start({
-        rotation: [0, scrollProgress.current * Math.PI * 2, 0]
-      })
+        rotation: [0, normalizedProgress * Math.PI * 0.3, 0],
+      });
     }
-    window.addEventListener('scroll', handleScroll)
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      ScrollTrigger.getAll().forEach(st => st.kill())
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [api]);
 
   useFrame((state, delta) => {
     if (earthRef.current) {
-      earthRef.current.rotation.y += delta * direction.current * 0.1
+      earthRef.current.rotation.y += delta * direction.current * 0.1;
     }
-  })
-  const { height } = useThree(s => s.viewport)
+  });
+  const { height } = useThree((s) => s.viewport);
 
   return (
-    <group rotation={[0, 3.4, 0]} ref={earthRef} position={deviceType === 'mobile' ? [0, -height / 2, 0] : [0, 0, 0]}>
+    <group
+      rotation={[0, 3.4, 0]}
+      ref={earthRef}
+      position={deviceType === "mobile" ? [0, -height / 2, 0] : [0, 0, 0]}
+    >
       <a.group
         // @ts-ignore
-        rotation={spring.rotation} >
-        <mesh scale={deviceType === 'mobile' ? 1 : 1.3}>
+        rotation={spring.rotation}
+      >
+        <mesh scale={deviceType === "mobile" ? 1 : 1.3}>
           <sphereGeometry args={[1.2, 32, 32]} />
-          <meshStandardMaterial bumpMap={texture} bumpScale={10} map={texture} />
+          <meshStandardMaterial
+            bumpMap={texture}
+            bumpScale={5}
+            map={texture}
+          />
         </mesh>
       </a.group>
     </group>
-  )
+  );
 }

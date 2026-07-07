@@ -3,7 +3,7 @@ import ProjectCard from "../ui/cards/project-card";
 
 
 type SmallGalleryProps = {
-  projects: { title: string; label: string; img: string, description: string }[];
+  projects: readonly { title: string; label: string; img: string; description: string }[];
 }
 
 export default function SmallGallery({ projects }: SmallGalleryProps) {

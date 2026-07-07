@@ -9,7 +9,7 @@ export const LINKS = [
   },
   {
     name: "Work",
-    href: "/projects",
+    href: "/work",
   },
   {
     name: "Contact",
@@ -101,6 +101,7 @@ export const PROJECTS = [
     github: "https://github.com/abdallemad/alpokarey-akademy",
     live: "https://alpokarey-akademy.vercel.app/",
     bgColor: "#007b44",
+    featured: true,
   },
   {
     title: "Dar Tipa",
@@ -111,6 +112,7 @@ export const PROJECTS = [
     github: "https://github.com/abdallemad/dar-tipa-hospital",
     live: "https://dar-tipa-hospital.vercel.app/",
     bgColor: "#008398",
+    featured: false,
   },
   {
     title: "Case Cobra",
@@ -121,6 +123,7 @@ export const PROJECTS = [
     github: "https://github.com/abdallemad/case-cobra",
     live: "https://case-cobra.vercel.app/",
     bgColor: "#00a63e",
+    featured: true,
   },
   {
     title: "SAAS notification",
@@ -131,6 +134,7 @@ export const PROJECTS = [
     github: "https://github.com/abdallemad/saas-notification",
     live: "https://saas-notification.vercel.app/",
     bgColor: "#3659b1",
+    featured: true,
   },
 ] as const;
 

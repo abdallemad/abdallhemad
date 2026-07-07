@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { motion } from 'motion/react'
 import Link from "next/link";
 import Magnetic from "../global-animations/magnetic";
+import ZoopAnimation from "../global-animations/zoop";
 
 export default function Header() {
 
@@ -33,7 +34,11 @@ export default function Header() {
                   {link.name === 'Contact' ? (
                     <Link href={link.href} className={buttonVariants()}>{link.name}</Link>
                   ) : (
-                    <Link href={link.href}>{link.name}</Link>
+                    <Link href={link.href}>
+                      <ZoopAnimation>
+                        {link.name}
+                      </ZoopAnimation>
+                    </Link>
                   )}
                 </>
               ))}

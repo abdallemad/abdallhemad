@@ -13,23 +13,32 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    (
-      async () => {
-        // @ts-expect-error:commonjs
-        const LocomotiveScroll = (await import('locomotive-scroll')).default
-        const locomotiveScroll = new LocomotiveScroll();
-        setTimeout(() => {
-          setIsLoading(false);
-          document.body.style.cursor = 'default'
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-        }, 2000)
+    let locomotiveScroll: any;
+
+    (async () => {
+      // @ts-expect-error:commonjs
+      const LocomotiveScroll = (await import("locomotive-scroll")).default;
+      locomotiveScroll = new LocomotiveScroll();
+    })();
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      document.body.style.cursor = 'default';
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+      if (locomotiveScroll && typeof locomotiveScroll.destroy === "function") {
+        locomotiveScroll.destroy();
       }
-    )()
-  }, [])
+    };
+  }, []);
   return (
 
     // <SmoothScroll>

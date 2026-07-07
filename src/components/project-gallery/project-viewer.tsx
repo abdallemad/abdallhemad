@@ -7,11 +7,11 @@ import gsap from 'gsap'
 import { useEffect, useRef } from 'react'
 
 type GalleryViewerProps = {
-
-  modal: { active: boolean, index: number }
+  modal: { active: boolean, index: number };
+  projects: readonly { id: number; img: string; title: string; bgColor: string }[];
 }
 
-export default function GalleryViewer({ modal }: GalleryViewerProps) {
+export default function GalleryViewer({ modal, projects }: GalleryViewerProps) {
 
   const { active, index } = modal
   const modalContainer = useRef(null);
@@ -59,7 +59,7 @@ export default function GalleryViewer({ modal }: GalleryViewerProps) {
           animate={{ translateY: `-${index * 100}%` }}
           transition={{ type: 'tween', duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
         >
-          {PROJECTS.map(project => (
+          {projects.map(project => (
             <div
               key={project.id}
               className='h-full shrink-0 flex items-center justify-center'
