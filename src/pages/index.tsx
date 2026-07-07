@@ -9,7 +9,7 @@ import HowIWork from "@/components/sections/how-i-work";
 import WhatIDo from "@/components/sections/what-i-do";
 import Work from "@/components/sections/work";
 import { useEffect, useState } from "react";
-
+import Curve from "@/components/layout/page-transition";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,10 +25,10 @@ export default function Home() {
 
     const timer = setTimeout(() => {
       setIsLoading(false);
-      document.body.style.cursor = 'default';
+      document.body.style.cursor = "default";
       window.scrollTo({
         top: 0,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }, 2000);
 
@@ -40,13 +40,15 @@ export default function Home() {
     };
   }, []);
   return (
-
-    // <SmoothScroll>
-    <main>
+    <Curve>
       <SEO />
-      <div className="min-h-screen flex flex-col relative ">
-        <div className="absolute inset-0 w-screen h-screen overflow-hidden" data-scroll data-scroll-speed="-0.3">
-          <SmoothEearthScroll />
+      <div className="min-h-screen flex flex-col relative " key={'home'}>
+        <div
+          className="absolute inset-0 w-screen h-screen overflow-hidden"
+          data-scroll
+          data-scroll-speed="-0.3"
+        >
+          <SmoothEearthScroll key={'home'}/>
         </div>
         <Header />
         <Hero />
@@ -56,7 +58,6 @@ export default function Home() {
       <Work />
       <HowIWork />
       <Footer />
-    </main>
-    // </SmoothScroll>
+    </Curve>
   );
 }

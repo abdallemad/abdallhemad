@@ -7,14 +7,14 @@ import { useRouter } from "next/router";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
 
-export default function SmoothEearthScroll() {
+export default function SmoothMoonScroll() {
   return (
     <Canvas camera={{ position: [0, 0, 5], fov: 50 }} className="">
       {/* <ambientLight intensity={0.51} /> */}
       <directionalLight position={[4, 0, 0]} intensity={5} />
       {/* <OrbitControls /> */}
       <Suspense fallback={<Loader />}>
-        <Eearth />
+        <Moon />
       </Suspense>
     </Canvas>
   );
@@ -23,8 +23,8 @@ function Loader() {
   const { active, progress, errors, item, loaded, total } = useProgress();
   return <Html center>{progress} % loaded</Html>;
 }
-function Eearth() {
-  const texture = useTexture("/texture/earth-gray.png");
+function Moon() {
+  const texture = useTexture("/texture/moon-texture.png");
   const earthRef = useRef<THREE.Mesh>(null);
   const [spring, api] = useSpring(() => ({
     from: { rotation: [0, 0, 0] },

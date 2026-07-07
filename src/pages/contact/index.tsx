@@ -9,8 +9,34 @@ import Header from "@/components/navigation/header";
 import Footer from "@/components/navigation/footer";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import SEO from "@/components/seo/seo";
-import SmoothEearthScroll from "@/components/global-animations/3d-models/3d-scene-earth";
 import AboutCurve from "@/components/global-animations/curve";
+import Curve from "@/components/layout/page-transition";
+import SmoothAutaredScroll from "@/components/global-animations/3d-models/autared";
+import { motion } from "framer-motion";
+
+/** Shared slide-up variants — same timing as hero.tsx */
+const slideUp = {
+  initial: { opacity: 0, y: 60 },
+  enter: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.75,
+      delay: 0.55 + delay,
+      ease: [0.33, 1, 0.68, 1],
+    },
+  }),
+  exit: (delay: number) => ({
+    opacity: 0,
+    y: -40,
+    transition: {
+      duration: 0.45,
+      delay,
+      ease: [0.45, 0, 0.55, 1],
+    },
+  }),
+};
+
 
 // Helper to map social link names to Lucide icons
 const getSocialIcon = (name: string) => {
@@ -46,20 +72,20 @@ export default function Contact() {
   }, []);
   const containerRef = useRef<HTMLDivElement>(null);
   return (
-    <main>
+    <Curve>
       <SEO
         title="Contact | Abdalla Emad"
         description="Get in touch for projects, collaboration, or general inquiries."
       />
 
       {/* Hero section — mirrors landing page structure */}
-      <div className="min-h-screen flex flex-col relative earth-scroll-base">
+      <div className="min-h-screen flex flex-col relative earth-scroll-base" key={'contact'}>
         <div
           className="absolute inset-0 w-screen h-screen overflow-hidden"
           data-scroll
           data-scroll-speed="-0.3"
         >
-          <SmoothEearthScroll />
+          <SmoothAutaredScroll key={'contact'}/>
         </div>
         <Header />
         <section className="flex-1 px-4">
@@ -69,16 +95,39 @@ export default function Contact() {
             data-scroll-speed="0.2"
           >
             <div className="flex flex-col items-center gap-2">
-              <h4 className="heading-4 text-muted-foreground">Get In Touch</h4>
-              <h1 className="hero-heading text-center min-w-fit">
-                Let's Build <br />
+              <motion.h4
+                className="heading-4 text-muted-foreground"
+                variants={slideUp}
+                custom={0}
+                initial="initial"
+                animate="enter"
+                exit="exit"
+              >
+                Get In Touch
+              </motion.h4>
+              <motion.h1
+                className="hero-heading text-center min-w-fit"
+                variants={slideUp}
+                custom={0.08}
+                initial="initial"
+                animate="enter"
+                exit="exit"
+              >
+                Let&apos;s Build <br />
                 Something Great
-              </h1>
+              </motion.h1>
             </div>
-            <p className="text-muted-foreground max-w-[560px] text-center">
-              Have a project in mind or want to collaborate? I'd love to hear
-              from you — let's create something remarkable together.
-            </p>
+            <motion.p
+              className="text-muted-foreground max-w-[560px] text-center"
+              variants={slideUp}
+              custom={0.16}
+              initial="initial"
+              animate="enter"
+              exit="exit"
+            >
+              Have a project in mind or want to collaborate? I&apos;d love to hear
+              from you — let&apos;s create something remarkable together.
+            </motion.p>
           </div>
         </section>
       </div>
@@ -231,6 +280,6 @@ export default function Contact() {
         </Container>
       </div>
       <Footer />
-    </main>
+    </Curve>
   );
 }

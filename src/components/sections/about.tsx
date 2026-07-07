@@ -115,7 +115,7 @@ function AboutImage() {
         </div>
         <figure className="px-4 lg:px-24">
           <motion.div style={{ clipPath: clipPathImage, height: imageHeight }} className="relative">
-            <motion.img ref={imageRef} src="/images/my_img.jpg" alt="Abdalla Emad - Full Stack Developer" style={{ scale: imageScale }} className="object-cover w-full h-full" />
+            <motion.img ref={imageRef} src="/images/edited-image.png" alt="Abdalla Emad - Full Stack Developer" style={{ scale: imageScale }} className="object-cover w-full h-full grayscale-100" />
           </motion.div>
         </figure>
       </motion.div>
